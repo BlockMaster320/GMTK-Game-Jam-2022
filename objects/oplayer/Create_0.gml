@@ -1,5 +1,5 @@
 //test
-movSpeed = 5;
+movSpeed = 10.205;
 hsp = 0
 vsp = 0
 
