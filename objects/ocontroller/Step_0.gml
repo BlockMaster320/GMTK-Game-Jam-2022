@@ -8,10 +8,18 @@ switch (gameState)
 		break
 		
 	case PHASE.rolling:
+		if (canRoll)
+		{
+			if (up || down || left || right)
+			{
+				MoveDice()
+			}
+		}
 		break
 		
 	case PHASE.offense:
 		break
 }
 
-show_debug_message(gameState)
+show_debug_message(canRoll)
+show_debug_message(time_source_get_period(rollDelay))

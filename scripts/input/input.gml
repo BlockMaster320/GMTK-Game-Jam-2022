@@ -10,4 +10,17 @@ function Input()
 	lmbRelease = mouse_check_button_released(mb_left)
 	
 	enter = keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)
+	
+	if (keyboard_check_pressed(ord("F"))) window_set_fullscreen(!window_get_fullscreen())
+}
+
+function MoveDice()
+{
+	if (up && diceY != 0)
+	{
+		if (tileType[diceX,diceY-1] != TILE_TYPE.empty) return noone
+		diceY--
+	}
+	canRoll = false
+	time_source_start(oController.rollDelay)
 }

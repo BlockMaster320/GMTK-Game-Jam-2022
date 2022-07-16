@@ -60,22 +60,33 @@ with (oBoardPiece)
 		case oCollision: {type = TILE_TYPE.wall; break;}
 	}
 	other.tileType[gridX,gridY] = type
+	instance_destroy(self)
 }
 with (oStartingPosition)
 {
-	startX = (x - other.boardTopX) % other.gridSize
-	startY = (y - other.boardTopY) % other.gridSize
+	other.startX = (x - other.boardTopX) / other.gridSize
+	other.startY = (y - other.boardTopY) / other.gridSize
+	instance_destroy(self)
 }
 with (oFinish)
 {
-	finishX = (x - other.boardTopX) % other.gridSize
-	finishY = (y - other.boardTopY) % other.gridSize
+	other.finishX = (x - other.boardTopX) / other.gridSize
+	other.finishY = (y - other.boardTopY) / other.gridSize
+	instance_destroy(self)
 }
 
 show_debug_message(tileType)
 
 //Setup drawing surface
 boardSurface = surface_create(gridW * gridSize, gridH * gridSize)
+DrawBoard()
 
-
+//Dice properties
+diceX = startX
+diceY = startY
+rollDelayFrames = 16
+canRoll = true
+//Je to hlupě napsane, ale když jsem to dal na víc řádků tak to nejelo
+rollDelay = time_source_create(time_source_game,rollDelayFrames,time_source_units_frames,
+	function(){canRoll = true},[],1)
 
