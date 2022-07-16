@@ -1,7 +1,22 @@
 {
   "resources": [
-    {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"order":0,},
-    {"id":{"name":"rRoomTest","path":"rooms/rRoomTest/rRoomTest.yy",},"order":0,},
+    {"id":{"name":"sRoomGizmo","path":"sprites/sRoomGizmo/sRoomGizmo.yy",},"order":4,},
+    {"id":{"name":"oEntryMenuController","path":"objects/oEntryMenuController/oEntryMenuController.yy",},"order":3,},
+    {"id":{"name":"sDice","path":"sprites/sDice/sDice.yy",},"order":0,},
+    {"id":{"name":"sCollision","path":"sprites/sCollision/sCollision.yy",},"order":1,},
+    {"id":{"name":"rLvl1","path":"rooms/rLvl1/rLvl1.yy",},"order":1,},
+    {"id":{"name":"Input","path":"scripts/Input/Input.yy",},"order":0,},
+    {"id":{"name":"sTiles","path":"sprites/sTiles/sTiles.yy",},"order":2,},
+    {"id":{"name":"oController","path":"objects/oController/oController.yy",},"order":1,},
+    {"id":{"name":"oBoardPiece","path":"objects/oBoardPiece/oBoardPiece.yy",},"order":8,},
+    {"id":{"name":"Abilities","path":"scripts/Abilities/Abilities.yy",},"order":1,},
+    {"id":{"name":"oInit","path":"objects/oInit/oInit.yy",},"order":2,},
+    {"id":{"name":"oStartingPosition","path":"objects/oStartingPosition/oStartingPosition.yy",},"order":7,},
+    {"id":{"name":"sTurret","path":"sprites/sTurret/sTurret.yy",},"order":3,},
+    {"id":{"name":"oFinish","path":"objects/oFinish/oFinish.yy",},"order":6,},
+    {"id":{"name":"Surfaces","path":"scripts/Surfaces/Surfaces.yy",},"order":2,},
+    {"id":{"name":"oCollision","path":"objects/oCollision/oCollision.yy",},"order":4,},
+    {"id":{"name":"rMenu","path":"rooms/rMenu/rMenu.yy",},"order":0,},
   ],
   "Options": [
     {"name":"Linux","path":"options/linux/options_linux.yy",},
@@ -17,7 +32,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"rRoomTest","path":"rooms/rRoomTest/rRoomTest.yy",},},
+    {"roomId":{"name":"rMenu","path":"rooms/rMenu/rMenu.yy",},},
+    {"roomId":{"name":"rLvl1","path":"rooms/rLvl1/rLvl1.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
