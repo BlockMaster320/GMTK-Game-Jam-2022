@@ -26,10 +26,12 @@ function MoveDice()
 			canRoll = false
 			movesRemaining = 0
 			time_source_start(oController.rollDelay)
-			if (up) moveDir[1] = -1
-			else if (down) moveDir[1] = 1
-			else if (left) moveDir[0] = -1
-			else if (right) moveDir[0] = 1
+			time_source_start(rollingAnimation)
+			diceSubimg = 0
+			if (up) { moveDir[1] = -1; diceSprite = sDiceRollUp }
+			else if (down) { moveDir[1] = 1; diceSprite = sDiceRollDown }
+			else if (left) { moveDir[0] = -1; diceSprite = sDiceRollLeft }
+			else if (right) { moveDir[0] = 1; diceSprite = sDiceRollRight }
 			return noone
 		}
 	}
@@ -39,6 +41,7 @@ function MoveDice()
 		if (tileType[diceX,diceY-1] != TILE_TYPE.empty) return noone
 		diceY--
 		moveDir[1] = -1
+		diceSprite = sDiceRollUp
 	}
 	if (down)
 	{
@@ -46,6 +49,7 @@ function MoveDice()
 		if (tileType[diceX,diceY+1] != TILE_TYPE.empty) return noone
 		diceY++
 		moveDir[1] = 1
+		diceSprite = sDiceRollDown
 	}
 	if (left)
 	{
@@ -53,6 +57,7 @@ function MoveDice()
 		if (tileType[diceX-1,diceY] != TILE_TYPE.empty) return noone
 		diceX--
 		moveDir[0] = -1
+		diceSprite = sDiceRollLeft
 	}
 	if (right)
 	{
@@ -60,10 +65,13 @@ function MoveDice()
 		if (tileType[diceX+1,diceY] != TILE_TYPE.empty) return noone
 		diceX++
 		moveDir[0] = 1
+		diceSprite = sDiceRollRight
 	}
 	
 	canRoll = false
-	time_source_start(oController.rollDelay)
+	time_source_start(rollDelay)
+	time_source_start(rollingAnimation)
+	diceSubimg = 0
 	movesRemaining--
 	currentNumber = 7 - movesRemaining
 }

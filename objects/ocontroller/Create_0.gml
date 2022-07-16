@@ -6,7 +6,9 @@ currentLevel =
 {
 	budget: 100,	//amount of money available for the level
 	unlockedItems: ABILITY.length, //amount of unlocked items
-	itemPrices: array_create(ABILITY.length,10) //Setup prices of abilities
+	itemPrices: array_create(ABILITY.length,10), //Setup prices of abilities
+	soldierAmount: 5,
+	soldierSpawnSpd: 60
 }
 
 //Change properties for each level individualy
@@ -15,8 +17,13 @@ switch (room)
 	case (rLvl1):
 		currentLevel.budget = 250
 		currentLevel.unlockedItems = 1
+		currentLevel.soldierAmount = 5
+		currentLevel.soldierSpawnSpd = 60
 		break
 }
+
+//Spawn soldiers
+SpawnSoldiers()
 
 //Dice properties
 diceX = oStartingPosition.x
@@ -51,9 +58,14 @@ with (oBoardPiece)
 	switch (object_index)
 	{
 		case oCollision: {type = TILE_TYPE.wall; break;}
+		case oTurretBasic:
+			type = TILE_TYPE.turretBasic
+			xx = gridX
+			yy = gridY
+			break
 	}
 	other.tileType[gridX,gridY] = type
-	instance_destroy(self)
+	if (object_index = oCollision) instance_destroy(self)
 }
 with (oStartingPosition)
 {
@@ -76,13 +88,13 @@ for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
 		tileTypeCopy[i][j] =  tileType[i][j]
 	}	
 }
+show_debug_message(tileType)
 
 for (var i = array_length(abilityList)-1; i > 0; i--)
 {
 	abilityListCopy[i] = abilityList[i]
 }
 
-show_debug_message(tileType)
 
 //Setup drawing surface
 boardSurface = surface_create(gridW * gridSize, gridH * gridSize)
@@ -92,26 +104,44 @@ DrawBoard()
 diceX = startX
 diceY = startY
 moveDir = [0,0]
+
+diceSprite = sDice
+diceSubimg = 0
+rollAnimLengthPerFrame = 7	//Délka rollování
+rollAnimLength = 3	//Neměnit
+transformAnimLengthPerFrame = 3	//Délka transformace na číslo
+transformAnimLength = 5	//Neměnit
+rollingAnimation = time_source_create(time_source_game,rollAnimLengthPerFrame,time_source_units_frames,RollAnimation,[],rollAnimLength)
+transformAnimation = time_source_create(time_source_game,transformAnimLengthPerFrame,time_source_units_frames,TransformAnimation,[],transformAnimLength)
+
 finished = false
 failedScreen = false
 
-rollDelayFrames = 16
+rollDelayFrames = rollAnimLengthPerFrame * rollAnimLength + transformAnimLengthPerFrame * transformAnimLength
+rollProgress = 0
 canRoll = true
 //Je to hlupě napsane, ale když jsem to dal na víc řádků tak to nejelo
 rollDelay = time_source_create(time_source_game,rollDelayFrames,time_source_units_frames,function()
 {
+	diceSubimg = 0
+	diceSprite = sDice
+	
 	canRoll = true
 	moveDir = [0,0]
 	rollPosOffsetX = 0
 	rollPosOffsetY = 0
 	tileType[diceX,diceY] = TILE_TYPE.numbered
-	numberOnTile[diceX,diceY] = 6 - currentNumber
+	numberOnTile[diceX,diceY] = currentNumber
 	if (movesRemaining == 0 && !finished)
 	{
 		failedScreen = true
 		canRoll = false
 	}
-	else if (finished) gameState = PHASE.offense
+	else if (finished)
+	{
+		finished = false
+		gameState = PHASE.offense
+	}
 	else
 	{
 		ExecuteAbility(currentNumber)	//Use ability with current number if possible

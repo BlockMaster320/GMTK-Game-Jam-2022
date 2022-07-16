@@ -6,7 +6,7 @@ if (leave) room_goto(rMenu)
 switch (gameState)
 {
 	case PHASE.shop:
-		if (enter)
+		if (enter or up)
 		{
 			gameState = PHASE.rolling
 			tileType[startX,startY] = TILE_TYPE.numbered
@@ -14,6 +14,9 @@ switch (gameState)
 			canRoll = false
 			movesRemaining = 6
 			time_source_start(oController.rollDelay)
+			time_source_start(rollingAnimation)
+			diceSprite = sDiceRollUp
+			diceSubimg = 0
 			moveDir[1] = -1
 			rollPosOffsetY = gridSize //Visual bugfix
 		}
@@ -22,6 +25,7 @@ switch (gameState)
 	case PHASE.rolling:
 		if (canRoll)	//Movement
 		{
+			diceSubimg = (currentNumber - 1) * 4 + 3
 			if (up || down || left || right)
 			{
 				MoveDice()
@@ -38,8 +42,15 @@ switch (gameState)
 				gridOffX = 0
 				gridOffY = 0
 			}
-			rollPosOffsetX = (rollDelayFrames - framesLeft) / rollDelayFrames * moveDir[0] * gridSize - gridOffX
-			rollPosOffsetY = (rollDelayFrames - framesLeft) / rollDelayFrames * moveDir[1] * gridSize - gridOffY
+			var curveChannel = animcurve_get_channel(acMovement,0)
+			rollProgress = (rollDelayFrames - framesLeft) / rollDelayFrames
+			var interpolated = animcurve_channel_evaluate(curveChannel,rollProgress)
+			rollPosOffsetX = interpolated * moveDir[0] * gridSize - gridOffX
+			rollPosOffsetY = interpolated * moveDir[1] * gridSize - gridOffY
+			
+			/*var subimgAmount = sprite_get_number(sDiceRollHorizontal)
+			if (moveDir[0] != -1 && moveDir[1] != 1) diceSubimg = subimgAmount - ceil(rollProgress * (subimgAmount))
+			else diceSubimg = ceil(rollProgress * (subimgAmount)) -.98*/
 		}
 		if (failedScreen && enter)
 		{
@@ -54,5 +65,5 @@ switch (gameState)
 //Level restart
 if (reset) BoardReset()
 
-show_debug_message(canRoll)
-show_debug_message(time_source_get_period(rollDelay))
+//show_debug_message(canRoll)
+//show_debug_message(time_source_get_period(rollDelay))

@@ -24,8 +24,14 @@ function DrawBoard()
 					draw_sprite(sTiles,0,xx,yy)
 					break
 					
+				case TILE_TYPE.numbered:
+					draw_sprite(sNumbers,numberOnTile[i][j]-1,xx,yy)
+					break
+					
 				case TILE_TYPE.wall:
-					draw_sprite(sCollision,0,xx,yy)
+					var index = irandom_range(1,6)
+					if (random(100) < .5) index = 0
+					draw_sprite(sCollision,index,xx,yy)
 					break
 					
 				case TILE_TYPE.turretBasic:
