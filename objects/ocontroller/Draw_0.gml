@@ -24,7 +24,11 @@ switch (gameState)
 		break
 		
 	case PHASE.rolling:
-		draw_sprite(sDice,0,diceX * gridSize + boardTopX, diceY * gridSize + boardTopY)
+		//Dice draw
+		var xx = diceX * gridSize + boardTopX + rollPosOffsetX
+		var yy = diceY * gridSize + boardTopY + rollPosOffsetY
+		draw_sprite(sDice,0,xx,yy)
+		if (failedScreen) draw_text(room_width / 2, room_height / 2,"You didn't finish")
 		break
 		
 	case PHASE.offense:

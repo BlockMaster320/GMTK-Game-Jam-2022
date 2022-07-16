@@ -4,6 +4,7 @@
     {"id":{"name":"oEntryMenuController","path":"objects/oEntryMenuController/oEntryMenuController.yy",},"order":3,},
     {"id":{"name":"sDice","path":"sprites/sDice/sDice.yy",},"order":0,},
     {"id":{"name":"sCollision","path":"sprites/sCollision/sCollision.yy",},"order":1,},
+    {"id":{"name":"sNumbers","path":"sprites/sNumbers/sNumbers.yy",},"order":5,},
     {"id":{"name":"rLvl1","path":"rooms/rLvl1/rLvl1.yy",},"order":1,},
     {"id":{"name":"Input","path":"scripts/Input/Input.yy",},"order":0,},
     {"id":{"name":"sTiles","path":"sprites/sTiles/sTiles.yy",},"order":2,},

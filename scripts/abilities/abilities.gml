@@ -1,13 +1,13 @@
-function ExecuteAbility()
+function ExecuteAbility(num)
 {
-	switch (currentNumber)
+	switch (abilityList[num-1])
 	{
 		case ABILITY.none:
 			break
 			
 		case ABILITY.diceReset:
-			movesRemaining = 6
-			abilityList[currentNumber] = ABILITY.none	//One time use
+			movesRemaining = 7
+			abilityList[num-1] = ABILITY.none	//One time use
 			break
 	}
 }

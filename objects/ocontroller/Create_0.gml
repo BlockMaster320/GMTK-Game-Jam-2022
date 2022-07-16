@@ -1,4 +1,5 @@
 abilityList = array_create(6,ABILITY.none)	//Which ability is on each dice number
+abilityList[6-1] = ABILITY.diceReset	//Testing
 
 //Level setup
 currentLevel =
@@ -28,12 +29,12 @@ gameState = PHASE.shop
 
 
 //Initialize level based on object placements in the room
-//tileType[12][5] = TILE_TYPE.empty	//13x6 grid
 for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
 {
 	for (var j = 0; j < 6; j++)
 	{
 		tileType[i][j] = TILE_TYPE.empty
+		numberOnTile[i][j] = 0
 	}	
 }
 boardTopX = 34	//Top left corner of the grid in room coordinates
@@ -41,14 +42,6 @@ boardTopY = 34
 gridSize = 17	//1 pixel space between the tiles
 gridW = 13
 gridH = 6
-
-/*for (var i = 0; i < array_length(tileType); i++)	//Checking tiles left to right
-{
-	for (var j = 0; j < array_length(tileType[0]); j++)
-	{
-		
-	}
-}*/
 
 with (oBoardPiece)
 {
@@ -75,6 +68,20 @@ with (oFinish)
 	instance_destroy(self)
 }
 
+//Copy the position array for level reseting
+for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
+{
+	for (var j = 0; j < 6; j++)
+	{
+		tileTypeCopy[i][j] =  tileType[i][j]
+	}	
+}
+
+for (var i = array_length(abilityList)-1; i > 0; i--)
+{
+	abilityListCopy[i] = abilityList[i]
+}
+
 show_debug_message(tileType)
 
 //Setup drawing surface
@@ -84,9 +91,33 @@ DrawBoard()
 //Dice properties
 diceX = startX
 diceY = startY
+moveDir = [0,0]
+finished = false
+failedScreen = false
+
 rollDelayFrames = 16
 canRoll = true
 //Je to hlupě napsane, ale když jsem to dal na víc řádků tak to nejelo
-rollDelay = time_source_create(time_source_game,rollDelayFrames,time_source_units_frames,
-	function(){canRoll = true},[],1)
+rollDelay = time_source_create(time_source_game,rollDelayFrames,time_source_units_frames,function()
+{
+	canRoll = true
+	moveDir = [0,0]
+	rollPosOffsetX = 0
+	rollPosOffsetY = 0
+	tileType[diceX,diceY] = TILE_TYPE.numbered
+	numberOnTile[diceX,diceY] = 6 - currentNumber
+	if (movesRemaining == 0 && !finished)
+	{
+		failedScreen = true
+		canRoll = false
+	}
+	else if (finished) gameState = PHASE.offense
+	else
+	{
+		ExecuteAbility(currentNumber)	//Use ability with current number if possible
+		RedrawTile(diceX,diceY)
+	}
+},[],1)
 
+rollPosOffsetX = 0
+rollPosOffsetY = 0
