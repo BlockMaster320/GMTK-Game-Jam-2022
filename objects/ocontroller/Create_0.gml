@@ -1,12 +1,14 @@
-abilityList = array_create(6,ABILITY.none)	//Which ability is on each dice number
-abilityList[6-1] = ABILITY.diceReset	//Testing
+abilityArray = array_create(6, ABILITY.none)	//Which ability is on each dice number
+//abilityArray[6-1] = ABILITY.diceReset	//Testing
+
+coinsAmount = 0;
+abilityActive = ABILITY.none;
 
 //Level setup
 currentLevel =
 {
 	budget: 100,	//amount of money available for the level
-	unlockedItems: ABILITY.length, //amount of unlocked items
-	itemPrices: array_create(ABILITY.length,10), //Setup prices of abilities
+	abilities: [],
 	soldierAmount: 5,
 	soldierSpawnSpd: 60
 }
@@ -15,9 +17,9 @@ currentLevel =
 switch (room)
 {
 	case (rLvl1):
-		currentLevel.budget = 250
-		currentLevel.unlockedItems = 1
-		currentLevel.soldierAmount = 5
+		currentLevel.budget = 3
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = [[ABILITY.bomb, 2], [ABILITY.armor, 1], [ABILITY.dash, 4]]	//set unlocked abilities: [ability, price]
 		currentLevel.soldierSpawnSpd = 60
 		break
 }
@@ -44,8 +46,8 @@ for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
 		numberOnTile[i][j] = 0
 	}	
 }
-boardTopX = 34	//Top left corner of the grid in room coordinates
-boardTopY = 34
+boardTopX = 17	//Top left corner of the grid in room coordinates
+boardTopY = 17
 gridSize = 17	//1 pixel space between the tiles
 gridW = 13
 gridH = 6
@@ -90,14 +92,15 @@ for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
 }
 show_debug_message(tileType)
 
-for (var i = array_length(abilityList)-1; i > 0; i--)
+for (var i = array_length(abilityArray)-1; i > 0; i--)
 {
-	abilityListCopy[i] = abilityList[i]
+	abilityArrayCopy[i] = abilityArray[i]
 }
 
 
 //Setup drawing surface
 boardSurface = surface_create(gridW * gridSize, gridH * gridSize)
+display_set_gui_size(room_width, room_height);
 DrawBoard()
 
 //Dice properties

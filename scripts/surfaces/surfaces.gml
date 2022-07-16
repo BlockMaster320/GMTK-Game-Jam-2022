@@ -85,9 +85,9 @@ function BoardReset()
 		}	
 	}
 	
-	for (var i = array_length(abilityList)-1; i > 0; i--)
+	for (var i = array_length(abilityArray)-1; i > 0; i--)
 	{
-		abilityList[i] = abilityListCopy[i]
+		abilityArray[i] = abilityArrayCopy[i]
 	}
 
 	diceX = startX
