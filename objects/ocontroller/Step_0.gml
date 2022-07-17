@@ -6,7 +6,7 @@ if (leave) room_goto(rMenu)
 switch (gameState)
 {
 	case PHASE.shop:
-		if (enter or up)
+		if ((enter or up) && abilityActive == ABILITY.none)
 		{
 			gameState = PHASE.rolling
 			tileType[startX,startY] = TILE_TYPE.numbered
@@ -59,6 +59,21 @@ switch (gameState)
 		break
 		
 	case PHASE.offense:
+		if (spawnSoldier)
+		{
+			var soldierId = currentSoldierId
+			with (oSoldier)
+			{
+				if (soldierId == soldierPosition)
+				{
+					active = true
+					targetX = other.walkedOverListX[|0] * oController.gridSize + oController.boardTopX
+					targetY = other.walkedOverListY[|0] * oController.gridSize + oController.boardTopY
+				}
+			}
+			currentSoldierId++
+			show_debug_message(currentSoldierId)
+		}
 		break
 }
 

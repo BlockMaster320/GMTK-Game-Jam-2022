@@ -1,10 +1,10 @@
 enum ABILITY
 {
 	none,
-	armor,
-	bomb,
 	dash,
-	diceReset
+	diceReset,
+	armor,
+	bomb
 }
 
 enum PHASE

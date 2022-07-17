@@ -17,15 +17,13 @@ currentLevel =
 switch (room)
 {
 	case (rLvl1):
-		currentLevel.budget = 3
+		currentLevel.budget = 5
 		coinsAmount = currentLevel.budget;
-		currentLevel.abilities = [[ABILITY.bomb, 2], [ABILITY.armor, 1], [ABILITY.dash, 4]]	//set unlocked abilities: [ability, price]
+		currentLevel.abilities = [[ABILITY.dash, 2], [ABILITY.diceReset, 1], [ABILITY.dash, 4]]	//set unlocked abilities: [ability, price]
 		currentLevel.soldierSpawnSpd = 60
 		break
 }
 
-//Spawn soldiers
-SpawnSoldiers()
 
 //Dice properties
 diceX = oStartingPosition.x
@@ -46,14 +44,16 @@ for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
 		numberOnTile[i][j] = 0
 	}	
 }
-boardTopX = 17	//Top left corner of the grid in room coordinates
-boardTopY = 17
+boardTopX = 12	//Top left corner of the grid in room coordinates
+boardTopY = 11
 gridSize = 17	//1 pixel space between the tiles
 gridW = 13
 gridH = 6
 
 with (oBoardPiece)
 {
+	
+	
 	var gridX = (x - other.boardTopX) / other.gridSize
 	var gridY = (y - other.boardTopY) / other.gridSize
 	var type = 0
@@ -61,6 +61,8 @@ with (oBoardPiece)
 	{
 		case oCollision: {type = TILE_TYPE.wall; break;}
 		case oTurretBasic:
+			x += x % other.gridSize - 5
+			y += y % other.gridSize - 6
 			type = TILE_TYPE.turretBasic
 			xx = gridX
 			yy = gridY
@@ -71,12 +73,16 @@ with (oBoardPiece)
 }
 with (oStartingPosition)
 {
+	x += x % other.gridSize - 5
+	y += y % other.gridSize - 6
 	other.startX = (x - other.boardTopX) / other.gridSize
 	other.startY = (y - other.boardTopY) / other.gridSize
 	instance_destroy(self)
 }
 with (oFinish)
 {
+	x += x % other.gridSize - 5
+	y += y % other.gridSize - 6
 	other.finishX = (x - other.boardTopX) / other.gridSize
 	other.finishY = (y - other.boardTopY) / other.gridSize
 	instance_destroy(self)
@@ -97,6 +103,8 @@ for (var i = array_length(abilityArray)-1; i > 0; i--)
 	abilityArrayCopy[i] = abilityArray[i]
 }
 
+//Spawn soldiers
+SpawnSoldiers()
 
 //Setup drawing surface
 boardSurface = surface_create(gridW * gridSize, gridH * gridSize)
@@ -148,9 +156,17 @@ rollDelay = time_source_create(time_source_game,rollDelayFrames,time_source_unit
 	else
 	{
 		ExecuteAbility(currentNumber)	//Use ability with current number if possible
-		RedrawTile(diceX,diceY)
+		ds_list_add(walkedOverListX,diceX)
+		ds_list_add(walkedOverListY,diceY)
+		show_debug_message(abilityArray)
 	}
+	RedrawTile(diceX,diceY)
 },[],1)
 
 rollPosOffsetX = 0
 rollPosOffsetY = 0
+
+//Offense
+currentSoldierId = 0
+walkedOverListX = ds_list_create()
+walkedOverListY = ds_list_create()

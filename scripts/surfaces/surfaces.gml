@@ -21,7 +21,7 @@ function DrawBoard()
 			switch (tileType[i][j])
 			{
 				case TILE_TYPE.empty:
-					draw_sprite(sTiles,0,xx,yy)
+					draw_sprite(sTiles,irandom_range(0,7),xx,yy)
 					break
 					
 				case TILE_TYPE.numbered:
@@ -77,6 +77,8 @@ function BoardReset()
 	movesRemaining = 0
 	currentNumber = 1
 	gameState = PHASE.shop
+	coinsAmount = currentLevel.budget
+	abilityActive = ABILITY.none
 	for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
 	{
 		for (var j = 0; j < 6; j++)
@@ -92,5 +94,12 @@ function BoardReset()
 
 	diceX = startX
 	diceY = startY
+	
+	currentSoldierId = 0
+	ds_list_clear(walkedOverListX)
+	ds_list_clear(walkedOverListY)
+	
+	SpawnSoldiers()
+	
 	DrawBoard()
 }
