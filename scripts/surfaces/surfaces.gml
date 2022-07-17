@@ -102,5 +102,8 @@ function BoardReset()
 	
 	SpawnSoldiers()
 	
+	var snd = choose(sndRestart,sndRestart2)
+	audio_play_sound(snd,0,0)
+	
 	DrawBoard()
 }
