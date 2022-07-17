@@ -26,6 +26,8 @@
   "frames": [
     {"compositeImage":{"FrameId":{"name":"08b2605c-eb35-4aa4-b363-897adea161d3","path":"sprites/sBackground/sBackground.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"08b2605c-eb35-4aa4-b363-897adea161d3","path":"sprites/sBackground/sBackground.yy",},"LayerId":{"name":"eaa66758-6b5d-4445-9fe8-c436b7213711","path":"sprites/sBackground/sBackground.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+        {"FrameId":{"name":"08b2605c-eb35-4aa4-b363-897adea161d3","path":"sprites/sBackground/sBackground.yy",},"LayerId":{"name":"29d3cb40-7c50-4769-b711-e4c18b17e0b1","path":"sprites/sBackground/sBackground.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+        {"FrameId":{"name":"08b2605c-eb35-4aa4-b363-897adea161d3","path":"sprites/sBackground/sBackground.yy",},"LayerId":{"name":"4936366d-69ce-4d3d-b669-acecd2bfbb05","path":"sprites/sBackground/sBackground.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"sBackground","path":"sprites/sBackground/sBackground.yy",},"resourceVersion":"1.0","name":"08b2605c-eb35-4aa4-b363-897adea161d3","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
@@ -65,6 +67,8 @@
     "resourceType": "GMSequence",
   },
   "layers": [
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 2","resourceVersion":"1.0","name":"4936366d-69ce-4d3d-b669-acecd2bfbb05","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 1","resourceVersion":"1.0","name":"29d3cb40-7c50-4769-b711-e4c18b17e0b1","tags":[],"resourceType":"GMImageLayer",},
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"eaa66758-6b5d-4445-9fe8-c436b7213711","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
