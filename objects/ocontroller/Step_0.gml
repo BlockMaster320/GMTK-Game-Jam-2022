@@ -1,6 +1,9 @@
 Input()
+if (win) reset = false
 
 if (leave) room_goto(rMenu)
+
+//if (win) gameState = PHASE.offense
 
 //Change controll based on game phase
 switch (gameState)
@@ -29,6 +32,7 @@ switch (gameState)
 		if (canRoll)	//Movement
 		{
 			diceSubimg = (currentNumber - 1) * 4 + 3
+			if (finishX == diceX && finishY == diceY) up = true
 			if (up || down || left || right)
 			{
 				MoveDice()
@@ -48,8 +52,9 @@ switch (gameState)
 			var curveChannel = animcurve_get_channel(acMovement,0)
 			rollProgress = (rollDelayFrames - framesLeft) / rollDelayFrames
 			var interpolated = animcurve_channel_evaluate(curveChannel,rollProgress)
-			rollPosOffsetX = interpolated * moveDir[0] * gridSize - gridOffX
-			rollPosOffsetY = interpolated * moveDir[1] * gridSize - gridOffY
+			rollPosOffsetX = (interpolated * moveDir[0] * gridSize - gridOffX) * dashAnimOffsetMultiplier
+			rollPosOffsetY = (interpolated * moveDir[1] * gridSize - gridOffY) * dashAnimOffsetMultiplier
+			show_debug_message(rollPosOffsetY)
 			
 			/*var subimgAmount = sprite_get_number(sDiceRollHorizontal)
 			if (moveDir[0] != -1 && moveDir[1] != 1) diceSubimg = subimgAmount - ceil(rollProgress * (subimgAmount))
@@ -62,9 +67,15 @@ switch (gameState)
 		break
 		
 	case PHASE.offense:
-		if (spawnSoldier)
+		if (spawnSoldier && spawnCooldown <= 0)
 		{
-			if (currentSoldierId == 0) audio_play_sound(sndOffenseStart,0,0)
+			spawnCooldown = currentLevel.spawnCooldownDef
+			if (currentSoldierId == 0)
+			{
+				var snd = sndOffenseStart2
+				if (random(100) < 1) snd = sndOffenseStart
+				audio_play_sound(snd,0,0)
+			}
 			var soldierId = currentSoldierId
 			with (oSoldier)
 			{
@@ -78,6 +89,7 @@ switch (gameState)
 			currentSoldierId++
 			show_debug_message(currentSoldierId)
 		}
+		else if (spawnCooldown > 0) spawnCooldown--
 		break
 }
 

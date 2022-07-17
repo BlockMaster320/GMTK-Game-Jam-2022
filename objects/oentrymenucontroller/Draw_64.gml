@@ -43,7 +43,8 @@ switch (menuState)
 			window_set_cursor(cr_drag);
 			_cursorSet = true;
 	
-			game_end();
+			if (lmbPress)
+				game_end();
 		}
 
 		break;
@@ -82,6 +83,7 @@ switch (menuState)
 				if (lmbPress)
 				{
 					menuState = MENU_STATE.main;
+					oInit.currentLevelNum = _i;
 					room_goto(oInit.levels[_i]);
 				}
 			}

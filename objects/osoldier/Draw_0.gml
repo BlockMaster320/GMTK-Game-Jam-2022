@@ -11,3 +11,5 @@ if (bulletTime > 0)
 	show_debug_message(ceil((bulletTime / BULLET_SPEED) * 4))
 	draw_sprite(sBullet, 4 - ceil((bulletTime / BULLET_SPEED) * 4), _bulletX, _bulletY);
 }
+
+//draw_text(x,y,soldierPosition)

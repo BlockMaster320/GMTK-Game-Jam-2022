@@ -1,8 +1,10 @@
-abilityArray = array_create(6, ABILITY.none)	//Which ability is on each dice number
+abilityArray = array_create(7, ABILITY.none)	//Which ability is on each dice number
 //abilityArray[6-1] = ABILITY.diceReset	//Testing
 
 coinsAmount = 0;
 abilityActive = ABILITY.none;
+
+win = false;
 
 //Level setup
 currentLevel =
@@ -10,19 +12,33 @@ currentLevel =
 	budget: 100,	//amount of money available for the level
 	abilities: [],
 	soldierAmount: 5,
-	soldierSpawnSpd: 60
+	spawnCooldownDef : 30,
+	dialogArray: []
 }
 
 //Change properties for each level individualy
 switch (room)
 {
 	case (rLvl1):
-		currentLevel.budget = 5
+		currentLevel.budget = 0
 		coinsAmount = currentLevel.budget;
-		currentLevel.abilities = [[ABILITY.armor, 2], [ABILITY.diceReset, 1], [ABILITY.bomb, 2]]	//set unlocked abilities: [ability, price]
-		currentLevel.soldierSpawnSpd = 60
+		currentLevel.abilities = []	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 3
+		currentLevel.dialogArray = ["Welcome to Aleaspira! \nThe land named after the tabletop game... \nAleaspira!", "The game has 3 PHASES: GEAR UP, ROLLING and TOWER OFFENSE.", "For now, press SPACE or UP ARROW to start the rolling phase",
+		"To move in the ROLLING use WASD or ARROW keys but be aware! You can only move as many times as many sides the cube has."]
+		break
+		
+	case (rLvl2):
+		currentLevel.budget = 0
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = []	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 1
+		currentLevel.dialogArray = ["After you reach the finish by rolling the dice, at least one of your troops needs to get there as well","Evade the tower that's in your way!"]
 		break
 }
+
+oDialogs.dialogArray = currentLevel.dialogArray;
+oDialogs.dialogNum = 0;
 
 
 //Dice properties
@@ -30,6 +46,9 @@ diceX = oStartingPosition.x
 diceY = oStartingPosition.y
 movesRemaining = 6
 currentNumber = 1
+
+dashDist = 3
+dashAnimOffsetMultiplier = 1
 
 //Setup game state
 gameState = PHASE.shop
@@ -59,32 +78,35 @@ with (oBoardPiece)
 	{
 		case oCollision: {type = TILE_TYPE.wall; break;}
 		case oTurretBasic:
-			x += x % other.gridSize - 5
-			y += y % other.gridSize - 6
+			x = other.gridSize * (x div other.gridSize+1) - 5
+			y = other.gridSize * (y div other.gridSize+1) - 6
 			type = TILE_TYPE.turretBasic
 			show_debug_message("gridX" + string(gridX));
 			xx = gridX
 			yy = gridY
 			break
+		case oHole:
+			type = TILE_TYPE.hole
+			break
 	}
 	other.tileType[gridX,gridY] = type
-	if (object_index = oCollision) instance_destroy(self)
+	if (object_index != oTurretBasic) instance_destroy(self)
 }
 
 
 
 with (oStartingPosition)
 {
-	x += x % other.gridSize - 5
-	y += y % other.gridSize - 6
+	x = other.gridSize * (x div other.gridSize+1) - 5
+	y = other.gridSize * (y div other.gridSize+1) - 6
 	other.startX = (x - other.boardTopX) / other.gridSize
 	other.startY = (y - other.boardTopY) / other.gridSize
 	instance_destroy(self)
 }
 with (oFinish)
 {
-	x += x % other.gridSize - 5
-	y += y % other.gridSize - 6
+	x = other.gridSize * (x div other.gridSize+1) - 5
+	y = other.gridSize * (y div other.gridSize+1) - 6
 	other.finishX = (x - other.boardTopX) / other.gridSize
 	other.finishY = (y - other.boardTopY) / other.gridSize
 	instance_destroy(self)
@@ -146,7 +168,8 @@ rollDelay = time_source_create(time_source_game,rollDelayFrames,time_source_unit
 	rollPosOffsetY = 0
 	tileType[diceX,diceY] = TILE_TYPE.numbered
 	numberOnTile[diceX,diceY] = currentNumber
-	if (movesRemaining == 0 && !finished)
+	dashAnimOffsetMultiplier = 1
+	if (movesRemaining == 0 && !finished && (finishX != diceX || finishY != diceY))
 	{
 		failedScreen = true
 		canRoll = false
@@ -173,3 +196,4 @@ rollPosOffsetY = 0
 currentSoldierId = 0
 walkedOverListX = ds_list_create()
 walkedOverListY = ds_list_create()
+spawnCooldown = 0
