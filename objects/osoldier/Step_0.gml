@@ -1,5 +1,14 @@
 if (active)
 {
+	if (walkSoundCountdown == 0)
+	{
+		var snd = choose(sndWalk1,sndWalk2,sndWalk3,sndWalk4)
+		audio_play_sound(snd,0,0)
+		audio_sound_pitch(snd,random_range(.95,1.1))
+		walkSoundCountdown = walkSoundCooldown
+	}
+	walkSoundCountdown--
+	
 	var targetXcentered = targetX + (oController.gridSize-1) / 2
 	var targetYcentered = targetY + (oController.gridSize-1) / 2
 	
@@ -27,8 +36,21 @@ if (active)
 	
 	var dir = point_direction(x,y,targetXcentered,targetYcentered)
 	image_angle = (dir-90)
-	hsp = lengthdir_x(spd,dir)
-	vsp = lengthdir_y(spd,dir)
+	var tempSpd = spd
+	
+	//Odsunutí
+	var nearestSoldier = instance_place(x,y,oSoldier)
+	if (instance_exists(nearestSoldier) && point_distance(nearestSoldier.x,nearestSoldier.y,x,y) < 6)
+	{
+		if (nearestSoldier.soldierPosition > soldierPosition) tempSpd = spd * 1.2
+		else tempSpd = spd * .8
+	}
+	
+	hsp = lengthdir_x(tempSpd,dir)
+	vsp = lengthdir_y(tempSpd,dir)
+	
 	x += hsp
 	y += vsp
+	
+	
 }

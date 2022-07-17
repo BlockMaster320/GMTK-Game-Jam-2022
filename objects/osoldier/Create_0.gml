@@ -19,3 +19,5 @@ bulletY = 0;
 
 //Visual
 turnDist = random_range(spd,oController.gridSize*.5)
+walkSoundCooldown = 20
+walkSoundCountdown = 0

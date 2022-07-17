@@ -1,7 +1,7 @@
 {
   "conversionMode": 0,
   "compression": 0,
-  "volume": 0.88,
+  "volume": 0.04,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,
@@ -11,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sndpickup.mp3",
-  "duration": 1.56,
+  "soundFile": "sndwalk2.mp3",
+  "duration": 0.36,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sndPickup",
+  "name": "sndWalk2",
   "tags": [],
   "resourceType": "GMSound",
 }
