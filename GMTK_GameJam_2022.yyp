@@ -33,6 +33,7 @@
     {"id":{"name":"oController","path":"objects/oController/oController.yy",},"order":1,},
     {"id":{"name":"sAbility","path":"sprites/sAbility/sAbility.yy",},"order":16,},
     {"id":{"name":"sDiceSide","path":"sprites/sDiceSide/sDiceSide.yy",},"order":15,},
+    {"id":{"name":"oShieldedTile","path":"objects/oShieldedTile/oShieldedTile.yy",},"order":12,},
     {"id":{"name":"oBoardPiece","path":"objects/oBoardPiece/oBoardPiece.yy",},"order":8,},
     {"id":{"name":"Abilities","path":"scripts/Abilities/Abilities.yy",},"order":1,},
     {"id":{"name":"oInit","path":"objects/oInit/oInit.yy",},"order":2,},

@@ -43,7 +43,15 @@ function MoveDice()
 	if (up)
 	{
 		if (diceY == 0) return noone	//Na 2 řádcích, aby to nehodilo error že array neexistuje
-		if (tileType[diceX,diceY-1] != TILE_TYPE.empty) return noone
+		if (tileType[diceX,diceY-1] != TILE_TYPE.empty)
+		{
+			if (abilityArray[currentNumber % 6] == ABILITY.bomb)
+			{
+				tileType[diceX][diceY - 1] = TILE_TYPE.numbered;
+				RedrawTile(diceX, diceY - 1)
+			}
+			else return noone;
+		}
 		diceY--
 		moveDir[1] = -1
 		diceSprite = sDiceRollUp
@@ -51,7 +59,15 @@ function MoveDice()
 	if (down)
 	{
 		if (diceY == gridH-1) return noone
-		if (tileType[diceX,diceY+1] != TILE_TYPE.empty) return noone
+		if (tileType[diceX,diceY+1] != TILE_TYPE.empty)
+		{
+			if (abilityArray[currentNumber % 6] == ABILITY.bomb)
+			{
+				tileType[diceX][diceY + 1] = TILE_TYPE.numbered;
+				RedrawTile(diceX, diceY + 1)
+			}
+			else return noone;
+		}
 		diceY++
 		moveDir[1] = 1
 		diceSprite = sDiceRollDown
@@ -59,7 +75,15 @@ function MoveDice()
 	if (left)
 	{
 		if (diceX == 0) return noone
-		if (tileType[diceX-1,diceY] != TILE_TYPE.empty) return noone
+		if (tileType[diceX-1,diceY] != TILE_TYPE.empty)
+		{
+			if (abilityArray[currentNumber % 6] == ABILITY.bomb)
+			{
+				tileType[diceX - 1][diceY] = TILE_TYPE.numbered;
+				RedrawTile(diceX - 1, diceY)
+			}
+			else return noone;
+		}
 		diceX--
 		moveDir[0] = -1
 		diceSprite = sDiceRollLeft
@@ -67,7 +91,15 @@ function MoveDice()
 	if (right)
 	{
 		if (diceX == gridW-1) return noone
-		if (tileType[diceX+1,diceY] != TILE_TYPE.empty) return noone
+		if (tileType[diceX+1,diceY] != TILE_TYPE.empty)
+		{
+			if (abilityArray[currentNumber % 6] == ABILITY.bomb)
+			{
+				tileType[diceX + 1][diceY] = TILE_TYPE.numbered;
+				RedrawTile(diceX + 1, diceY)
+			}
+			else return noone;
+		}
 		diceX++
 		moveDir[0] = 1
 		diceSprite = sDiceRollRight
