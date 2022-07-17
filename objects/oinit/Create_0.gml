@@ -1,5 +1,5 @@
 //Setup levels
-levels = [rLvl1, rLvl2];
+levels = [rLvl1, rLvl2, rLvl3, rLvl4, rLvl5, rLvl6, rLvl7, rLvl8, rLvl9, rLvl10];
 unlockedLevel = 0;
 currentLevelNum = 0;
 

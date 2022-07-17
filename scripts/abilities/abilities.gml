@@ -6,7 +6,7 @@ function ExecuteAbility(num)
 			break
 			
 		case ABILITY.diceReset:
-			movesRemaining = 6
+			movesRemaining = 7
 			abilityArray[num-1] = ABILITY.none	//One time use
 			break
 		
