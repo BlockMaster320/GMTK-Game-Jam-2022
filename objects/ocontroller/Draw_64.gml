@@ -72,7 +72,7 @@ for (var _i = 0; _i < array_length(currentLevel.abilities); _i++)
 	draw_set_alpha(1);
 	draw_sprite(sCoin, 0, _drawX + _drawPriceOffsetX + 2, _drawY + _drawPriceOffsetY - 3);
 	
-	if (_buyable && abilityActive == ABILITY.none && point_in_rectangle(mouse_x, mouse_y, _drawX, _drawY, _drawX + _frameWidth, _drawY + _frameHeight))
+	if (gameState == PHASE.shop && _buyable && abilityActive == ABILITY.none && point_in_rectangle(mouse_x, mouse_y, _drawX, _drawY, _drawX + _frameWidth, _drawY + _frameHeight))
 	{
 		window_set_cursor(cr_drag);
 		_cursorSet = true;

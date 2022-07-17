@@ -14,6 +14,8 @@ function Input()
 	leave = keyboard_check_pressed(vk_escape)
 	
 	if (keyboard_check_pressed(ord("F"))) window_set_fullscreen(!window_get_fullscreen())
+	
+	spawnSoldier = enter
 }
 
 function MoveDice()
