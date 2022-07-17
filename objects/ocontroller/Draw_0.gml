@@ -6,7 +6,13 @@ if (!surface_exists(boardSurface))
 }
 draw_surface(boardSurface,boardTopX,boardTopY)
 
+
+if (!surface_exists(abilitySurface))
+	abilitySurface = surface_create(room_width, room_height);
+draw_surface(abilitySurface, 0, 0);
+
 //Draw based on state
+/*
 switch (gameState)
 {
 	case PHASE.shop:
@@ -22,7 +28,7 @@ switch (gameState)
 		
 	case PHASE.offense:
 		break
-}
+}*/
 
 
 //testing

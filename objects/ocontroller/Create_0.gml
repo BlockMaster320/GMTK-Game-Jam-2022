@@ -19,7 +19,7 @@ switch (room)
 	case (rLvl1):
 		currentLevel.budget = 5
 		coinsAmount = currentLevel.budget;
-		currentLevel.abilities = [[ABILITY.dash, 2], [ABILITY.diceReset, 1], [ABILITY.dash, 4]]	//set unlocked abilities: [ability, price]
+		currentLevel.abilities = [[ABILITY.armor, 2], [ABILITY.diceReset, 1], [ABILITY.dash, 4]]	//set unlocked abilities: [ability, price]
 		currentLevel.soldierSpawnSpd = 60
 		break
 }
@@ -42,7 +42,7 @@ for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
 	{
 		tileType[i][j] = TILE_TYPE.empty
 		numberOnTile[i][j] = 0
-	}	
+	}
 }
 boardTopX = 12	//Top left corner of the grid in room coordinates
 boardTopY = 11
@@ -52,8 +52,6 @@ gridH = 6
 
 with (oBoardPiece)
 {
-	
-	
 	var gridX = (x - other.boardTopX) / other.gridSize
 	var gridY = (y - other.boardTopY) / other.gridSize
 	var type = 0
@@ -64,6 +62,7 @@ with (oBoardPiece)
 			x += x % other.gridSize - 5
 			y += y % other.gridSize - 6
 			type = TILE_TYPE.turretBasic
+			show_debug_message("gridX" + string(gridX));
 			xx = gridX
 			yy = gridY
 			break
@@ -71,6 +70,9 @@ with (oBoardPiece)
 	other.tileType[gridX,gridY] = type
 	if (object_index = oCollision) instance_destroy(self)
 }
+
+
+
 with (oStartingPosition)
 {
 	x += x % other.gridSize - 5
@@ -108,6 +110,7 @@ SpawnSoldiers()
 
 //Setup drawing surface
 boardSurface = surface_create(gridW * gridSize, gridH * gridSize)
+abilitySurface = surface_create(room_width, room_height);
 display_set_gui_size(room_width, room_height);
 DrawBoard()
 
