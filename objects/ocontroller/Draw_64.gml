@@ -50,7 +50,7 @@ if (win)
 draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
 draw_set_font(fnt_Pixel);
-draw_text_transformed_color(297, 22, string(coinsAmount), 1, 1, 0, c_white, c_white, c_white, c_white, 1);
+draw_text_transformed_color(297, 22, string(coinsAmount), 1.2, 1.2, 0, c_white, c_white, c_white, c_white, 1);
 draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);
 
@@ -97,7 +97,7 @@ var _frameHeight = sprite_get_height(sAbility);
 var _drawSpacingX = _frameWidth + 16;
 var _drawSpacingY = _frameWidth + 16;
 var _drawPriceOffsetX = sprite_get_width(sAbility) * 0.5;
-var _drawPriceOffsetY = sprite_get_height(sAbility) + 9;
+var _drawPriceOffsetY = sprite_get_height(sAbility) + 8;
 
 for (var _i = 0; _i < array_length(currentLevel.abilities); _i++)
 {
@@ -113,10 +113,10 @@ for (var _i = 0; _i < array_length(currentLevel.abilities); _i++)
 	draw_sprite(sAbility, _ability[0], _drawX, _drawY);
 	
 	draw_set_halign(fa_right);	//draw the ability prices
-	draw_text_transformed_color(_drawX + _drawPriceOffsetX, _drawY + _drawPriceOffsetY, string(_ability[1]), 0.5, 0.5, 0, _priceColor, _priceColor, _priceColor, _priceColor, 1);
+	draw_text_transformed_color(_drawX + _drawPriceOffsetX, _drawY + _drawPriceOffsetY + 1, string(_ability[1]), 0.5, 0.5, 0, _priceColor, _priceColor, _priceColor, _priceColor, 1);
 	draw_set_halign(fa_left);
 	draw_set_alpha(1);
-	draw_sprite(sCoin, 0, _drawX + _drawPriceOffsetX + 2, _drawY + _drawPriceOffsetY - 3);
+	draw_sprite(sCoin, 0, _drawX + _drawPriceOffsetX + 2, _drawY + _drawPriceOffsetY - 2);
 	
 	if (gameState == PHASE.shop && _buyable && abilityActive == ABILITY.none && point_in_rectangle(mouse_x, mouse_y, _drawX, _drawY, _drawX + _frameWidth, _drawY + _frameHeight))
 	{

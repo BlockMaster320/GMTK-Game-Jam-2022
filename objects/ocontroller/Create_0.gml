@@ -37,6 +37,9 @@ switch (room)
 		break
 }
 
+oDialogs.dialogArray = currentLevel.dialogArray;
+oDialogs.dialogNum = 0;
+
 
 //Dice properties
 diceX = oStartingPosition.x
