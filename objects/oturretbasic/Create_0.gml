@@ -21,8 +21,8 @@ fire = function()
 		if (_soldier != noone)
 		{
 			_soldier.bulletTime = BULLET_SPEED;
-			_soldier.bulletX = x;
-			_soldier.bulletY = y;
+			_soldier.bulletX = x + floor(oController.gridSize * 0.5);
+			_soldier.bulletY = y + floor(oController.gridSize * 0.5);
 			return;
 		}
 	}
