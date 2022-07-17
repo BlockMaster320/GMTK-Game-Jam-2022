@@ -29,6 +29,7 @@ switch (gameState)
 		if (canRoll)	//Movement
 		{
 			diceSubimg = (currentNumber - 1) * 4 + 3
+			if (finishX == diceX && finishY == diceY) up = true
 			if (up || down || left || right)
 			{
 				MoveDice()
@@ -65,7 +66,7 @@ switch (gameState)
 	case PHASE.offense:
 		if (spawnSoldier && spawnCooldown <= 0)
 		{
-			spawnCooldown = spawnCooldownDef
+			spawnCooldown = currentLevel.spawnCooldownDef
 			if (currentSoldierId == 0)
 			{
 				var snd = sndOffenseStart2

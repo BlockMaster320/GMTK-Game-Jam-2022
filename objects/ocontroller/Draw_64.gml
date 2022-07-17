@@ -31,7 +31,7 @@ if (win)
 	
 		if (lmbPress)
 		{
-			if (oInit.unlockedLevel > array_length(oInit.levels))
+			if (oInit.currentLevelNum == array_length(oInit.levels)-1)
 			{
 				show_debug_message("egsd");
 				room_goto(rMenu);
