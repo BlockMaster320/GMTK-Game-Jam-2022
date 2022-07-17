@@ -12,19 +12,24 @@ currentLevel =
 	budget: 100,	//amount of money available for the level
 	abilities: [],
 	soldierAmount: 5,
-	soldierSpawnSpd: 60
+	soldierSpawnSpd: 60,
+	dialogArray: []
 }
 
 //Change properties for each level individualy
 switch (room)
 {
 	case (rLvl1):
-		currentLevel.budget = 5
+		currentLevel.budget = 5;
 		coinsAmount = currentLevel.budget;
 		currentLevel.abilities = [[ABILITY.dash, 2], [ABILITY.diceReset, 1], [ABILITY.bomb, 2]]	//set unlocked abilities: [ability, price]
-		currentLevel.soldierSpawnSpd = 60
+		currentLevel.soldierSpawnSpd = 60;
+		currentLevel.dialogArray = ["this is a text intended purely for testing purposes, please do not try to understand it, especially not in any offensive way, your'e gay", "blablalblblablba"];
 		break
 }
+
+oDialogs.dialogArray = currentLevel.dialogArray;
+oDialogs.dialogNum = 0;
 
 
 //Dice properties
