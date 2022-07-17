@@ -22,6 +22,10 @@ if (room != rMenu && dialogNum <= array_length(dialogArray) - 1)
 	draw_set_font(fnt_Pixel);
 	
 	if (keyboard_check_pressed(vk_enter))
+	{
+		var snd = choose(sndTalking,sndTalking2,sndTalking3,sndTalking4)
+		audio_play_sound(snd,0,0)
 		dialogNum++;
+	}
 }
 

@@ -40,6 +40,7 @@ switch (gameState)
 		}
 		if (!canRoll)	//Tady nemůže být else, protože se canRoll může změnit v kódu výše
 		{
+			reset = false
 			//Visuální pohyb kostky mezi tily (offsetem)
 			var framesLeft = time_source_get_time_remaining(rollDelay)
 			var gridOffX = gridSize * moveDir[0]
@@ -60,6 +61,7 @@ switch (gameState)
 			if (moveDir[0] != -1 && moveDir[1] != 1) diceSubimg = subimgAmount - ceil(rollProgress * (subimgAmount))
 			else diceSubimg = ceil(rollProgress * (subimgAmount)) -.98*/
 		}
+		if (diceX == finishX and diceY == finishY) diceAlpha -= .1
 		if (failedScreen && enter)
 		{
 			BoardReset()
@@ -73,7 +75,7 @@ switch (gameState)
 			if (currentSoldierId == 0)
 			{
 				var snd = sndOffenseStart2
-				if (random(100) < 1) snd = sndOffenseStart
+				if (random(100) < 3) snd = sndOffenseStart
 				audio_play_sound(snd,0,0)
 			}
 			var soldierId = currentSoldierId
