@@ -19,7 +19,7 @@ switch (room)
 	case (rLvl1):
 		currentLevel.budget = 5
 		coinsAmount = currentLevel.budget;
-		currentLevel.abilities = [[ABILITY.armor, 2], [ABILITY.diceReset, 1], [ABILITY.bomb, 2]]	//set unlocked abilities: [ability, price]
+		currentLevel.abilities = [[ABILITY.dash, 2], [ABILITY.diceReset, 1], [ABILITY.bomb, 2]]	//set unlocked abilities: [ability, price]
 		currentLevel.soldierSpawnSpd = 60
 		break
 }
@@ -30,6 +30,9 @@ diceX = oStartingPosition.x
 diceY = oStartingPosition.y
 movesRemaining = 6
 currentNumber = 1
+
+dashDist = 3
+dashAnimOffsetMultiplier = 1
 
 //Setup game state
 gameState = PHASE.shop
@@ -66,9 +69,12 @@ with (oBoardPiece)
 			xx = gridX
 			yy = gridY
 			break
+		case oHole:
+			type = TILE_TYPE.hole
+			break
 	}
 	other.tileType[gridX,gridY] = type
-	if (object_index = oCollision) instance_destroy(self)
+	if (object_index != oTurretBasic) instance_destroy(self)
 }
 
 
@@ -146,6 +152,7 @@ rollDelay = time_source_create(time_source_game,rollDelayFrames,time_source_unit
 	rollPosOffsetY = 0
 	tileType[diceX,diceY] = TILE_TYPE.numbered
 	numberOnTile[diceX,diceY] = currentNumber
+	dashAnimOffsetMultiplier = 1
 	if (movesRemaining == 0 && !finished)
 	{
 		failedScreen = true
@@ -173,3 +180,5 @@ rollPosOffsetY = 0
 currentSoldierId = 0
 walkedOverListX = ds_list_create()
 walkedOverListY = ds_list_create()
+spawnCooldownDef = 20
+spawnCooldown = 0

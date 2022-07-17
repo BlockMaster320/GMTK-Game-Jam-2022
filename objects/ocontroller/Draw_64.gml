@@ -37,9 +37,9 @@ for (var _i = 0; _i < 6; _i++)
 		_cursorSet = true;
 		if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left))
 		{
-			var snd = choose(sndWood1,sndWood2,sndWood3)
+			var snd = choose(sndPickup,sndPickup2)
 			audio_play_sound(snd,0,0)
-			audio_sound_pitch(snd,random_range(.98,1.15))
+			audio_sound_pitch(snd,random_range(.95,1.1))
 			abilityArray[_i] = abilityActive;
 			abilityActive = ABILITY.none;
 		}
@@ -85,7 +85,9 @@ for (var _i = 0; _i < array_length(currentLevel.abilities); _i++)
 			var snd = choose(sndMoney,sndMoney2,sndMoney3)
 			audio_play_sound(snd,0,0)
 			audio_sound_pitch(snd,random_range(.9,1.1))
-			audio_play_sound(sndPickup,0,0)
+			var snd = choose(sndWood1,sndWood2,sndWood3)
+			audio_play_sound(snd,0,0)
+			audio_sound_pitch(snd,random_range(.98,1.15))
 			abilityActive = _ability[0];
 			coinsAmount -= _ability[1];
 		}

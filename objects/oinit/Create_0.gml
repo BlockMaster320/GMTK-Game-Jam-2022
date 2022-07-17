@@ -19,7 +19,8 @@ enum TILE_TYPE
 	empty,
 	wall,
 	numbered,
-	turretBasic
+	turretBasic,
+	hole
 }
 
 #macro BULLET_COOLDOWN 1

@@ -1,9 +1,9 @@
 function Input()
 {
-	up = keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W"))
-	down = keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S"))
-	left = keyboard_check_pressed(vk_left) || keyboard_check_pressed(ord("A"))
-	right = keyboard_check_pressed(vk_right) || keyboard_check_pressed(ord("D"))
+	up = keyboard_check(vk_up) || keyboard_check(ord("W"))
+	down = keyboard_check(vk_down) || keyboard_check(ord("S"))
+	left = keyboard_check(vk_left) || keyboard_check(ord("A"))
+	right = keyboard_check(vk_right) || keyboard_check(ord("D"))
 	
 	lmbPress = mouse_check_button_pressed(mb_left)
 	lmbHold = mouse_check_button(mb_left)
@@ -15,7 +15,7 @@ function Input()
 	
 	if (keyboard_check_pressed(ord("F"))) window_set_fullscreen(!window_get_fullscreen())
 	
-	spawnSoldier = enter
+	spawnSoldier = keyboard_check(vk_enter) || keyboard_check(vk_space)
 }
 
 function MoveDice()
@@ -43,7 +43,41 @@ function MoveDice()
 	if (up)
 	{
 		if (diceY == 0) return noone	//Na 2 řádcích, aby to nehodilo error že array neexistuje
-		if (tileType[diceX,diceY-1] != TILE_TYPE.empty)
+		
+		var moveAmount = 1
+		if (abilityArray[currentNumber % 6] == ABILITY.dash)
+		{
+			for (var i = 1; i <= dashDist; i++)
+			{
+				try
+				{
+					if ((tileType[diceX,diceY-i] != TILE_TYPE.empty && tileType[diceX,diceY-i] != TILE_TYPE.hole) || (i == dashDist && tileType[diceX,diceY-i] == TILE_TYPE.hole))
+					{
+						i = 9999
+					}
+					else
+					{
+						moveAmount = i
+						if (i != dashDist)
+						{
+							var xx = (diceX) * gridSize + boardTopX
+							var yy = (diceY-i) * gridSize + boardTopY
+							instance_create_depth(xx,yy,0,oBridge)
+						}
+					}
+				}
+				catch(bruh)
+				{
+					i = 9999
+				}
+				
+			}
+			
+		}
+		if (moveAmount == 0) return noone
+		dashAnimOffsetMultiplier = moveAmount
+		
+		if (tileType[diceX,diceY-moveAmount] != TILE_TYPE.empty)
 		{
 			if (abilityArray[currentNumber % 6] == ABILITY.bomb)
 			{
@@ -52,14 +86,45 @@ function MoveDice()
 			}
 			else return noone;
 		}
-		diceY--
+		diceY -= moveAmount
 		moveDir[1] = -1
 		diceSprite = sDiceRollUp
 	}
-	if (down)
+	else if (down)
 	{
 		if (diceY == gridH-1) return noone
-		if (tileType[diceX,diceY+1] != TILE_TYPE.empty)
+		var moveAmount = 1
+		if (abilityArray[currentNumber % 6] == ABILITY.dash)
+		{
+			for (var i = 1; i <= dashDist; i++)
+			{
+				try
+				{
+					if ((tileType[diceX,diceY+i] != TILE_TYPE.empty && tileType[diceX,diceY-i] != TILE_TYPE.hole) || (i == dashDist && tileType[diceX,diceY-i] == TILE_TYPE.hole))
+					{
+						i = 9999
+					}
+					else
+					{
+						moveAmount = i
+						if (i != dashDist)
+						{
+							var xx = (diceX) * gridSize + boardTopX
+							var yy = (diceY+i) * gridSize + boardTopY
+							instance_create_depth(xx,yy,0,oBridge)
+						}
+					}
+				}
+				catch(bruh)
+				{
+					i = 9999
+				}
+			}
+			
+		}
+		if (moveAmount == 0) return noone
+		dashAnimOffsetMultiplier = moveAmount
+		if (tileType[diceX,diceY+moveAmount] != TILE_TYPE.empty)
 		{
 			if (abilityArray[currentNumber % 6] == ABILITY.bomb)
 			{
@@ -68,14 +133,45 @@ function MoveDice()
 			}
 			else return noone;
 		}
-		diceY++
+		diceY += moveAmount
 		moveDir[1] = 1
 		diceSprite = sDiceRollDown
 	}
-	if (left)
+	else if (left)
 	{
 		if (diceX == 0) return noone
-		if (tileType[diceX-1,diceY] != TILE_TYPE.empty)
+		var moveAmount = 1
+		if (abilityArray[currentNumber % 6] == ABILITY.dash)
+		{
+			for (var i = 1; i <= dashDist; i++)
+			{
+				try
+				{
+					if ((tileType[diceX-i,diceY] != TILE_TYPE.empty && tileType[diceX,diceY-i] != TILE_TYPE.hole) || (i == dashDist && tileType[diceX,diceY-i] == TILE_TYPE.hole))
+					{
+						i = 9999
+					}
+					else
+					{
+						moveAmount = i
+						if (i != dashDist)
+						{
+							var xx = (diceX-i) * gridSize + boardTopX
+							var yy = (diceY) * gridSize + boardTopY
+							instance_create_depth(xx,yy,0,oBridge)
+						}
+					}
+				}
+				catch(bruh)
+				{
+					i = 9999
+				}
+			}
+			
+		}
+		if (moveAmount == 0) return noone
+		dashAnimOffsetMultiplier = moveAmount
+		if (tileType[diceX-moveAmount,diceY] != TILE_TYPE.empty)
 		{
 			if (abilityArray[currentNumber % 6] == ABILITY.bomb)
 			{
@@ -84,14 +180,45 @@ function MoveDice()
 			}
 			else return noone;
 		}
-		diceX--
+		diceX -= moveAmount
 		moveDir[0] = -1
 		diceSprite = sDiceRollLeft
 	}
-	if (right)
+	else if (right)
 	{
 		if (diceX == gridW-1) return noone
-		if (tileType[diceX+1,diceY] != TILE_TYPE.empty)
+		var moveAmount = 1
+		if (abilityArray[currentNumber % 6] == ABILITY.dash)
+		{
+			for (var i = 1; i <= dashDist; i++)
+			{
+				try
+				{
+					if ((tileType[diceX+i,diceY] != TILE_TYPE.empty && tileType[diceX,diceY-i] != TILE_TYPE.hole) || (i == dashDist && tileType[diceX,diceY-i] == TILE_TYPE.hole))
+					{
+						i = 9999
+					}
+					else
+					{
+						moveAmount = i
+						if (i != dashDist)
+						{
+							var xx = (diceX+i) * gridSize + boardTopX
+							var yy = (diceY) * gridSize + boardTopY
+							instance_create_depth(xx,yy,0,oBridge)
+						}
+					}
+				}
+				catch(bruh)
+				{
+					i = 9999
+				}
+			}
+			
+		}
+		if (moveAmount == 0) return noone
+		dashAnimOffsetMultiplier = moveAmount
+		if (tileType[diceX+moveAmount,diceY] != TILE_TYPE.empty)
 		{
 			if (abilityArray[currentNumber % 6] == ABILITY.bomb)
 			{
@@ -100,7 +227,7 @@ function MoveDice()
 			}
 			else return noone;
 		}
-		diceX++
+		diceX += moveAmount
 		moveDir[0] = 1
 		diceSprite = sDiceRollRight
 	}

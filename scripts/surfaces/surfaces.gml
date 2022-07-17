@@ -38,6 +38,10 @@ function DrawBoard()
 					draw_sprite(sTiles,0,xx,yy)
 					break
 					
+				case TILE_TYPE.hole:
+					draw_sprite(sHole,0,xx,yy)
+					break
+					
 			}
 		}
 	}
@@ -101,6 +105,7 @@ function BoardReset()
 	ds_list_clear(walkedOverListY)
 	
 	SpawnSoldiers()
+	with (oBridge) instance_destroy()
 	
 	var snd = choose(sndRestart,sndRestart2)
 	audio_play_sound(snd,0,0)
