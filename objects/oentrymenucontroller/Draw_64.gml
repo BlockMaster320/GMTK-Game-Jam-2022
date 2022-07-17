@@ -2,7 +2,7 @@
 var _guiW = room_width;
 var _guiH = room_height;
 var _centerX = _guiW/2;
-var _baseY = _guiH/2;
+var _baseY = _guiH/2 + 30;
 var _menuButtonOffset = 20;
 var _menuButtonWidth = 130;
 var _menuButtonHeight = sprite_get_height(sMenuButton) - 3;
@@ -16,6 +16,8 @@ switch (menuState)
 	{
 		var _buttonWidth = 130;
 		var _buttonHeight = sprite_get_height(sMenuButton) - 3;
+		
+		draw_sprite(sTitle, 0, _centerX, 60);
 		
 		draw_sprite(sMenuButton, 0, _centerX, _baseY)
 		draw_sprite(sMenuButton, 0, _centerX, _baseY + _menuButtonOffset)
@@ -54,6 +56,8 @@ switch (menuState)
 	{
 		draw_set_halign(fa_center);
 		draw_text_transformed_color(_centerX, 20, "LEVEL SELECTION", 1, 1, 0, _textColor, _textColor, _textColor, _textColor, 1);
+		
+		_baseY = _guiH/2;
 		
 		var _buttonWidth = 25;
 		var _buttonHeight = 20;
