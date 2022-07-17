@@ -40,7 +40,7 @@ switch (gameState)
 		}
 		if (!canRoll)	//Tady nemůže být else, protože se canRoll může změnit v kódu výše
 		{
-			reset = false
+			if (diceSprite != sDice) reset = false
 			//Visuální pohyb kostky mezi tily (offsetem)
 			var framesLeft = time_source_get_time_remaining(rollDelay)
 			var gridOffX = gridSize * moveDir[0]
