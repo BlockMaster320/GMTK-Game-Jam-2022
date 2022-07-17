@@ -19,6 +19,9 @@ if (active)
 		if (ds_list_size(oController.walkedOverListX) < walkingListPosition)
 		{
 			//Finished
+			if (oController.win == false)
+				oController.win = true;
+			
 			instance_destroy()
 		}
 		if (oController.walkedOverListX[|walkingListPosition] == undefined)

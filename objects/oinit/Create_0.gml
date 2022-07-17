@@ -1,6 +1,7 @@
 //Setup levels
-levels = [rLvl1, rLvl1, rLvl1, rLvl1, rLvl1,  rLvl1, rLvl1, rLvl1, rLvl1];
-unlockedLevel = 3;
+levels = [rLvl1, rLvl2];
+unlockedLevel = 0;
+currentLevelNum = 0;
 
 //Load the data file
 if (!file_exists("game_data.sav"))
@@ -8,7 +9,7 @@ if (!file_exists("game_data.sav"))
 else
 {
 	var _dataStruct = json_parse(json_string_load("game_data.sav"))
-	unlockedLeve = _dataStruct.level;
+	unlockedLevel = _dataStruct.level;
 }
 
 //CONSTANTS

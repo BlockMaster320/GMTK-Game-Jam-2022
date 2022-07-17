@@ -11,6 +11,7 @@
     {"id":{"name":"oEntryMenuController","path":"objects/oEntryMenuController/oEntryMenuController.yy",},"order":3,},
     {"id":{"name":"sndWalk1","path":"sounds/sndWalk1/sndWalk1.yy",},"order":17,},
     {"id":{"name":"sAbilityOnDice","path":"sprites/sAbilityOnDice/sAbilityOnDice.yy",},"order":18,},
+    {"id":{"name":"sLevelComplete","path":"sprites/sLevelComplete/sLevelComplete.yy",},"order":33,},
     {"id":{"name":"sDice","path":"sprites/sDice/sDice.yy",},"order":0,},
     {"id":{"name":"sndTalking","path":"sounds/sndTalking/sndTalking.yy",},"order":21,},
     {"id":{"name":"sAbilityBase","path":"sprites/sAbilityBase/sAbilityBase.yy",},"order":17,},
@@ -70,6 +71,7 @@
     {"id":{"name":"sSoldierIdle","path":"sprites/sSoldierIdle/sSoldierIdle.yy",},"order":11,},
     {"id":{"name":"sDiceRollLeft","path":"sprites/sDiceRollLeft/sDiceRollLeft.yy",},"order":9,},
     {"id":{"name":"fnt_Pixel","path":"fonts/fnt_Pixel/fnt_Pixel.yy",},"order":1,},
+    {"id":{"name":"rLvl2","path":"rooms/rLvl2/rLvl2.yy",},"order":2,},
     {"id":{"name":"sMenuButton","path":"sprites/sMenuButton/sMenuButton.yy",},"order":22,},
     {"id":{"name":"oFinish","path":"objects/oFinish/oFinish.yy",},"order":6,},
     {"id":{"name":"sndMoney2","path":"sounds/sndMoney2/sndMoney2.yy",},"order":1,},
@@ -93,6 +95,7 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"rMenu","path":"rooms/rMenu/rMenu.yy",},},
     {"roomId":{"name":"rLvl1","path":"rooms/rLvl1/rLvl1.yy",},},
+    {"roomId":{"name":"rLvl2","path":"rooms/rLvl2/rLvl2.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

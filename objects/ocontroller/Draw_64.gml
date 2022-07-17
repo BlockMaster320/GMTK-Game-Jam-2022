@@ -3,6 +3,49 @@ draw_text(100,25,"Game state: " + string(gameState))*/
 
 var _cursorSet = false;	//for reseting cursor image
 
+//Level win
+if (win)
+{
+	var _centerX = room_width * 0.5;
+	var _baseY = 60;
+	draw_sprite(sLevelComplete, 0, _centerX, _baseY);
+
+	var _buttonWidth = 130;
+	var _buttonHeight = sprite_get_height(sMenuButton) - 3;
+		
+	draw_sprite(sMenuButton, 0, _centerX, _baseY + 50)
+
+	draw_set_halign(fa_center)
+	draw_set_valign(fa_center)
+	draw_set_font(fnt_Pixel)
+	draw_text_transformed_color(_centerX, _baseY + 50, "NEXT LEVEL", 0.75, 0.75, 0, c_white, c_white, c_white, c_white , 1);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
+
+	//Interact with the button
+	Input();
+	if (point_in_rectangle(mouse_x, mouse_y, _centerX - _buttonWidth * 0.5, _baseY - _buttonHeight * 0.5 + 50, _centerX + _buttonWidth * 0.5, _baseY + _buttonHeight * 0.5 + 50))
+	{
+		window_set_cursor(cr_drag);
+		_cursorSet = true;
+	
+		if (lmbPress)
+		{
+			if (oInit.unlockedLevel > array_length(oInit.levels))
+			{
+				show_debug_message("egsd");
+				room_goto(rMenu);
+			}
+			else 
+			{
+				oInit.unlockedLevel++;
+				oInit.currentLevelNum++;
+				room_goto(oInit.levels[oInit.currentLevelNum]);
+			}
+		}
+	}
+}
+
 //Draw the amount of coins
 draw_set_halign(fa_right);
 draw_set_valign(fa_bottom);

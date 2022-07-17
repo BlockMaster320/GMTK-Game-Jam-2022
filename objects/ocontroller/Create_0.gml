@@ -4,6 +4,8 @@ abilityArray = array_create(6, ABILITY.none)	//Which ability is on each dice num
 coinsAmount = 0;
 abilityActive = ABILITY.none;
 
+win = false;
+
 //Level setup
 currentLevel =
 {
