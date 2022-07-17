@@ -9,13 +9,14 @@ function Input()
 	lmbHold = mouse_check_button(mb_left)
 	lmbRelease = mouse_check_button_released(mb_left)
 	
-	enter = keyboard_check_pressed(vk_enter) || keyboard_check_pressed(vk_space)
+	enter = keyboard_check_pressed(vk_space)
 	reset = keyboard_check_pressed(ord("R"))
 	leave = keyboard_check_pressed(vk_escape)
 	
 	if (keyboard_check_pressed(ord("F"))) window_set_fullscreen(!window_get_fullscreen())
 	
-	spawnSoldier = keyboard_check(vk_enter) || keyboard_check(vk_space)
+	//spawnSoldier = keyboard_check(vk_enter) || keyboard_check(vk_space)
+	spawnSoldier = true
 }
 
 function MoveDice()
@@ -58,10 +59,10 @@ function MoveDice()
 					else
 					{
 						moveAmount = i
-						if (i != dashDist)
+						if (i != dashDist && tileType[diceX,diceY-dashDist] = TILE_TYPE.empty)
 						{
-							var xx = (diceX) * gridSize + boardTopX
-							var yy = (diceY-i) * gridSize + boardTopY
+							var xx = (diceX) * gridSize + boardTopX + (gridSize/2)
+							var yy = (diceY-i) * gridSize + boardTopY + (gridSize/2)
 							instance_create_depth(xx,yy,0,oBridge)
 						}
 					}
@@ -107,10 +108,10 @@ function MoveDice()
 					else
 					{
 						moveAmount = i
-						if (i != dashDist)
+						if (i != dashDist && tileType[diceX,diceY+dashDist] = TILE_TYPE.empty)
 						{
-							var xx = (diceX) * gridSize + boardTopX
-							var yy = (diceY+i) * gridSize + boardTopY
+							var xx = (diceX) * gridSize + boardTopX + (gridSize/2)
+							var yy = (diceY+i) * gridSize + boardTopY + (gridSize/2)
 							instance_create_depth(xx,yy,0,oBridge)
 						}
 					}
@@ -154,11 +155,11 @@ function MoveDice()
 					else
 					{
 						moveAmount = i
-						if (i != dashDist)
+						if (i != dashDist && tileType[diceX-dashDist,diceY] = TILE_TYPE.empty)
 						{
-							var xx = (diceX-i) * gridSize + boardTopX
-							var yy = (diceY) * gridSize + boardTopY
-							instance_create_depth(xx,yy,0,oBridge)
+							var xx = (diceX-i) * gridSize + boardTopX + (gridSize/2)
+							var yy = (diceY) * gridSize + boardTopY + (gridSize/2)
+							instance_create_depth(xx,yy,0,oBridge,{image_angle: 90})
 						}
 					}
 				}
@@ -201,11 +202,11 @@ function MoveDice()
 					else
 					{
 						moveAmount = i
-						if (i != dashDist)
+						if (i != dashDist && tileType[diceX+dashDist,diceY] = TILE_TYPE.empty)
 						{
-							var xx = (diceX+i) * gridSize + boardTopX
-							var yy = (diceY) * gridSize + boardTopY
-							instance_create_depth(xx,yy,0,oBridge)
+							var xx = (diceX+i) * gridSize + boardTopX + (gridSize/2)
+							var yy = (diceY) * gridSize + boardTopY + (gridSize/2)
+							instance_create_depth(xx,yy,0,oBridge,{image_angle: 90})
 						}
 					}
 				}

@@ -55,5 +55,5 @@ if (active)
 	x += hsp
 	y += vsp
 	
-	
+	if (walkingListPosition == ds_list_size(oController.walkedOverListX)) image_alpha -= .2
 }
