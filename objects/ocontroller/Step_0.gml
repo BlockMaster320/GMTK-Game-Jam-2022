@@ -11,6 +11,9 @@ switch (gameState)
 			gameState = PHASE.rolling
 			tileType[startX,startY] = TILE_TYPE.numbered
 			
+			var snd = choose(sndRoll1,sndRoll2,sndRoll3,sndRoll4)
+			audio_play_sound(snd,0,0)
+			audio_sound_pitch(snd,random_range(.95,1.05))
 			canRoll = false
 			movesRemaining = 6
 			time_source_start(oController.rollDelay)
