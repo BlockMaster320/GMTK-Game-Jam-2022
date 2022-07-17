@@ -1,6 +1,9 @@
 Input()
+if (win) reset = false
 
 if (leave) room_goto(rMenu)
+
+//if (win) gameState = PHASE.offense
 
 //Change controll based on game phase
 switch (gameState)

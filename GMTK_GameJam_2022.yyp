@@ -76,7 +76,6 @@
     {"id":{"name":"sDiceRollLeft","path":"sprites/sDiceRollLeft/sDiceRollLeft.yy",},"order":9,},
     {"id":{"name":"fnt_Pixel","path":"fonts/fnt_Pixel/fnt_Pixel.yy",},"order":1,},
     {"id":{"name":"oDialogs","path":"objects/oDialogs/oDialogs.yy",},"order":15,},
-    {"id":{"name":"rLvl2","path":"rooms/rLvl2/rLvl2.yy",},"order":2,},
     {"id":{"name":"sMenuButton","path":"sprites/sMenuButton/sMenuButton.yy",},"order":22,},
     {"id":{"name":"oFinish","path":"objects/oFinish/oFinish.yy",},"order":6,},
     {"id":{"name":"sndMoney2","path":"sounds/sndMoney2/sndMoney2.yy",},"order":1,},

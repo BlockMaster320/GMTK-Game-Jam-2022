@@ -24,8 +24,8 @@ switch (room)
 		coinsAmount = currentLevel.budget;
 		currentLevel.abilities = []	//set unlocked abilities: [ability, price]
 		currentLevel.soldierAmount = 3
-		//currentLevel.dialogArray: ["Welcome to Aleaspira! \n The land named after the tabletop game... \n Aleaspira!", "The game has 3 PHASES: GEAR UP, ROLLING and TOWER OFFENSE.", "For now, press SPACE or UP ARROW to start the rolling phase",
-		//"To move in the ROLLING use WASD or ARROW keys but be aware! You can only move as many times as many sides the cube has."]
+		currentLevel.dialogArray = ["Welcome to Aleaspira! \n The land named after the tabletop game... \n Aleaspira!", "The game has 3 PHASES: GEAR UP, ROLLING and TOWER OFFENSE.", "For now, press SPACE or UP ARROW to start the rolling phase",
+		"To move in the ROLLING use WASD or ARROW keys but be aware! You can only move as many times as many sides the cube has."]
 		break
 		
 	case (rLvl2):
@@ -33,7 +33,7 @@ switch (room)
 		coinsAmount = currentLevel.budget;
 		currentLevel.abilities = []	//set unlocked abilities: [ability, price]
 		currentLevel.soldierAmount = 1
-		//currentLevel.dialogArray: ["After you reach the finish by rolling the dice, at least one of your troops needs to get there as well","Evade the tower that's in your way!"]
+		currentLevel.dialogArray = ["After you reach the finish by rolling the dice, at least one of your troops needs to get there as well","Evade the tower that's in your way!"]
 		break
 }
 
