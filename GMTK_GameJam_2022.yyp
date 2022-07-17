@@ -28,6 +28,7 @@
     {"id":{"name":"sBackground","path":"sprites/sBackground/sBackground.yy",},"order":13,},
     {"id":{"name":"sTiles","path":"sprites/sTiles/sTiles.yy",},"order":2,},
     {"id":{"name":"sndRestart2","path":"sounds/sndRestart2/sndRestart2.yy",},"order":10,},
+    {"id":{"name":"sndOffenseStart","path":"sounds/sndOffenseStart/sndOffenseStart.yy",},"order":15,},
     {"id":{"name":"oController","path":"objects/oController/oController.yy",},"order":1,},
     {"id":{"name":"sAbility","path":"sprites/sAbility/sAbility.yy",},"order":22,},
     {"id":{"name":"sDiceSide","path":"sprites/sDiceSide/sDiceSide.yy",},"order":21,},

@@ -64,6 +64,7 @@ switch (gameState)
 	case PHASE.offense:
 		if (spawnSoldier)
 		{
+			if (currentSoldierId == 0) audio_play_sound(sndOffenseStart,0,0)
 			var soldierId = currentSoldierId
 			with (oSoldier)
 			{
