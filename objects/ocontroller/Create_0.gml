@@ -19,7 +19,7 @@ switch (room)
 	case (rLvl1):
 		currentLevel.budget = 5
 		coinsAmount = currentLevel.budget;
-		currentLevel.abilities = [[ABILITY.armor, 2], [ABILITY.diceReset, 1], [ABILITY.dash, 4]]	//set unlocked abilities: [ability, price]
+		currentLevel.abilities = [[ABILITY.armor, 2], [ABILITY.diceReset, 1], [ABILITY.bomb, 2]]	//set unlocked abilities: [ability, price]
 		currentLevel.soldierSpawnSpd = 60
 		break
 }
