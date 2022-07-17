@@ -15,7 +15,7 @@ if (room != rMenu && dialogNum <= array_length(dialogArray) - 1)
 	draw_triangle_color(280, 140, 225, 105 - _offset, 225 - _offset, 105,  _color, _color, _color, false);
 	
 	draw_set_valign(fa_top);
-	draw_set_halign(fa_right);
+	draw_set_halign(fa_left);
 	draw_set_font(fntDialog);
 	draw_text_ext_transformed_color(_drawX + 5, _drawY + 5, dialogArray[dialogNum], _sep, _w, 0.4, 0.6, 0, c_white, c_white, c_white, c_white, 1);
 	draw_text_ext_transformed_color(_drawX + 7, 105 - 8, "> ENTER", _sep, _w, 0.4, 0.6, 0, c_grey, c_grey, c_grey, c_grey, 1);
