@@ -23,7 +23,7 @@ function MoveDice()
 {
 	if (finishX == diceX && finishY == diceY)
 	{
-		if ((up and diceY == 0) or (down and diceY == gridH-1) or (left and diceX == 0) or (right and diceX == gridW-1))
+		if (up/*(up and diceY == 0) or (down and diceY == gridH-1) or (left and diceX == 0) or (right and diceX == gridW-1)*/)
 		{
 			finished = true
 			canRoll = false
@@ -31,9 +31,9 @@ function MoveDice()
 			time_source_start(oController.rollDelay)
 			time_source_start(rollingAnimation)
 			diceSubimg = 0
-			var snd = choose(sndRoll1,sndRoll2,sndRoll3,sndRoll4)
+			/*var snd = choose(sndRoll1,sndRoll2,sndRoll3,sndRoll4)
 			audio_play_sound(snd,0,0)
-			audio_sound_pitch(snd,random_range(.95,1.05))
+			audio_sound_pitch(snd,random_range(.95,1.05))*/
 			if (up) { moveDir[1] = -1; diceSprite = sDiceRollUp }
 			else if (down) { moveDir[1] = 1; diceSprite = sDiceRollDown }
 			else if (left) { moveDir[0] = -1; diceSprite = sDiceRollLeft }

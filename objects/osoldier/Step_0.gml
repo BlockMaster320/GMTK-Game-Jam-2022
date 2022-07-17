@@ -20,7 +20,10 @@ if (active)
 		{
 			//Finished
 			if (oController.win == false)
+			{
 				oController.win = true;
+				audio_play_sound(sndFinish,0,0)
+			}
 			
 			instance_destroy()
 		}

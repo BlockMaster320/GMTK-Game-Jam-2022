@@ -12,7 +12,7 @@ currentLevel =
 	budget: 100,	//amount of money available for the level
 	abilities: [],
 	soldierAmount: 5,
-	spawnCooldownDef : 30,
+	spawnCooldownDef : 35,
 	dialogArray: []
 }
 
@@ -35,10 +35,79 @@ switch (room)
 		currentLevel.soldierAmount = 1
 		currentLevel.dialogArray = ["After you reach the finish by rolling the dice, at least one of your troops needs to get there as well","Evade the tower that's in your way!"]
 		break
+		
+	case (rLvl3):
+		currentLevel.budget = 0
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = []	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 3
+		break
+		
+	case (rLvl4):
+		currentLevel.budget = 3
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = [[ABILITY.armor,3]]	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 1
+		currentLevel.dialogArray = ["Now, let's go shopping.","You have a limited budget for each encounter.","Buy ARMOR by dragging the icon on one of your slots","When your troops stand on the number of the slot, the towers can't target them."]
+		break
+		
+	case (rLvl5):
+		currentLevel.budget = 4
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = [[ABILITY.armor,2]]	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 2
+		currentLevel.dialogArray = ["If the prices are low enough, you can even buy multiple of same item!","Oh I'm so generous..."]
+		break
+		
+	case (rLvl6):
+		currentLevel.budget = 3
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = [[ABILITY.diceReset,3]]	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 2
+		currentLevel.dialogArray = ["Now things are going to get wild!","When you reach the number of the slot for the first time, the DICE RESET resets the number on your dice back to one.","Try it out!"]
+		break
+		
+	case (rLvl7):
+		currentLevel.budget = 4
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = [[ABILITY.diceReset,2],[ABILITY.armor,2]]	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 1
+		break
+		
+	case (rLvl8):
+		currentLevel.budget = 4
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = [[ABILITY.diceReset,2],[ABILITY.armor,2]]	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 2
+		currentLevel.spawnCooldownDef = 100
+		break
+		
+	case (rLvl9):
+		currentLevel.budget = 5
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = [[ABILITY.diceReset,1],[ABILITY.armor,2]]	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 2
+		currentLevel.dialogArray = ["Let's test your brains out.","Not in a way a similar plants game does it but you know...","There are 2 ways to solve this level."]
+		break
+		
+	case (rLvl10):
+		currentLevel.budget = 2
+		coinsAmount = currentLevel.budget;
+		currentLevel.abilities = [[ABILITY.diceReset,2],[ABILITY.armor,2]]	//set unlocked abilities: [ability, price]
+		currentLevel.soldierAmount = 25
+		currentLevel.spawnCooldownDef = 10
+		currentLevel.dialogArray = ["Sometimes, endurance wins above surviving..."]
+		break
 }
 
 oDialogs.dialogArray = currentLevel.dialogArray;
 oDialogs.dialogNum = 0;
+
+if (array_length(oDialogs.dialogArray) > 0)
+{
+	var snd = choose(sndTalking,sndTalking2,sndTalking3,sndTalking4)
+	audio_play_sound(snd,0,0)
+}
 
 
 //Dice properties
@@ -141,6 +210,7 @@ diceX = startX
 diceY = startY
 moveDir = [0,0]
 
+diceAlpha = 1
 diceSprite = sDice
 diceSubimg = 0
 rollAnimLengthPerFrame = 7	//Délka rollování

@@ -77,6 +77,7 @@ function RedrawTile(xx, yy)
 
 function BoardReset()
 {
+	diceAlpha = 1
 	failedScreen = false
 	movesRemaining = 0
 	currentNumber = 1
@@ -92,9 +93,9 @@ function BoardReset()
 		}	
 	}
 	
-	for (var i = array_length(abilityArray)-1; i > 0; i--)
+	for (var i = array_length(abilityArray)-1; i >= 0; i--)
 	{
-		abilityArray[i] = abilityArrayCopy[i]
+		abilityArray[i] = ABILITY.none //abilityArrayCopy[i]
 	}
 
 	diceX = startX

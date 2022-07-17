@@ -11,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sndtalking3.mp3",
-  "duration": 2.832,
+  "soundFile": "snddash.mp3",
+  "duration": 0.744,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sndTalking3",
+  "name": "sndDash",
   "tags": [],
   "resourceType": "GMSound",
 }

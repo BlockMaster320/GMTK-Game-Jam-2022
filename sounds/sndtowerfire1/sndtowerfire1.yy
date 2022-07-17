@@ -11,14 +11,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "sndtalking3.mp3",
-  "duration": 2.832,
+  "soundFile": "sndtowerfire1.mp3",
+  "duration": 1.392,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
   },
   "resourceVersion": "1.0",
-  "name": "sndTalking3",
+  "name": "sndTowerFire1",
   "tags": [],
   "resourceType": "GMSound",
 }
