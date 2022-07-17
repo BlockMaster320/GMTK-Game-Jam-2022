@@ -23,6 +23,7 @@
     {"id":{"name":"Input","path":"scripts/Input/Input.yy",},"order":0,},
     {"id":{"name":"sndRoll4","path":"sounds/sndRoll4/sndRoll4.yy",},"order":6,},
     {"id":{"name":"sButtonNineSlice","path":"sprites/sButtonNineSlice/sButtonNineSlice.yy",},"order":28,},
+    {"id":{"name":"Save","path":"scripts/Save/Save.yy",},"order":5,},
     {"id":{"name":"sndMoney","path":"sounds/sndMoney/sndMoney.yy",},"order":0,},
     {"id":{"name":"sndRestart","path":"sounds/sndRestart/sndRestart.yy",},"order":9,},
     {"id":{"name":"sDiceRollDown","path":"sprites/sDiceRollDown/sDiceRollDown.yy",},"order":7,},
