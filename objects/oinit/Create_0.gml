@@ -21,3 +21,6 @@ enum TILE_TYPE
 	numbered,
 	turretBasic
 }
+
+#macro BULLET_COOLDOWN 1
+#macro BULLET_SPEED 40

@@ -79,6 +79,7 @@ function BoardReset()
 	gameState = PHASE.shop
 	coinsAmount = currentLevel.budget
 	abilityActive = ABILITY.none
+	with (oShieldedTile) instance_destroy(self);
 	for (var i = 0; i < 13; i++)	//Checking tiles top to bottom
 	{
 		for (var j = 0; j < 6; j++)
